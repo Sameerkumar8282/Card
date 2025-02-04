@@ -71,16 +71,16 @@
 </head>
 <body>
 
-<div class="card" id="card">For You Baby</div>
+<div class="card" id="card">For You</div>
 
 <div class="question" id="question">
-    <h1>Will you be my valentine Dumplings?</h1>
+    <h1>Will you be my valentine Dumpling?</h1>
     <button id="yes">YES!</button>
     <button class="no-btn" id="no">no</button>
 </div>
 
 <div class="yay-section" id="yay">
-    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Teddy Bears">
+    <img src="/mnt/data/image.png" alt="Teddy Bears">
     <h1>Yay!</h1>
 </div>
 
@@ -111,6 +111,7 @@
     noBtn.addEventListener('mouseover', moveNoButton);
     noBtn.addEventListener('click', () => {
         noClickCount++;
+        noBtn.textContent = `no (${noClickCount})`;
         if (noClickCount >= 6) {
             noBtn.style.display = 'none';
             yaySection.style.display = 'flex';
