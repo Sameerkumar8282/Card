@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fef9f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card, .question, .yay-section {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .card {
+            background-color: #d9534f;
+            color: white;
+            width: 90%;
+            max-width: 400px;
+            height: 200px;
+            cursor: pointer;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .question, .yay-section {
+            background-color: #f7c6c7;
+            width: 90%;
+            max-width: 400px;
+            padding: 40px 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d9534f;
+            color: white;
+            cursor: pointer;
+        }
+
+        button.no-btn {
+            background-color: white;
+            color: #d9534f;
+            border: 1px solid #d9534f;
+        }
+
+        img {
+            width: 100%;
+            max-width: 200px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card" id="card">For You Baby</div>
+
+<div class="question" id="question">
+    <h1>Will you be my valentine Dumplings?</h1>
+    <button id="yes">YES!</button>
+    <button class="no-btn" id="no">no</button>
+</div>
+
+<div class="yay-section" id="yay">
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Teddy Bears">
+    <h1>Yay!</h1>
+</div>
+
+<script>
+    const card = document.getElementById('card');
+    const question = document.getElementById('question');
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const yaySection = document.getElementById('yay');
+
+    let noClickCount = 0;
+
+    card.style.display = 'flex';
+
+    card.addEventListener('click', () => {
+        card.style.transform = 'translateY(100vh)';
+        setTimeout(() => {
+            card.style.display = 'none';
+            question.style.display = 'flex';
+        }, 600);
+    });
+
+    yesBtn.addEventListener('click', () => {
+        question.style.display = 'none';
+        yaySection.style.display = 'flex';
+    });
+
+    noBtn.addEventListener('mouseover', moveNoButton);
+    noBtn.addEventListener('click', () => {
+        noClickCount++;
+        if (noClickCount >= 6) {
+            noBtn.style.display = 'none';
+            yaySection.style.display = 'flex';
+        } else {
+            moveNoButton();
+        }
+    });
+
+    function moveNoButton() {
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+    }
+</script>
+
+</body>
+</html>
